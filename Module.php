@@ -51,7 +51,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 		$sType = 'personal';
 		$sPath = '/';
 		$iErrors = 0;
-		$sResourceDir = __Dir__.'\\content\\';
+		$sResourceDir = __Dir__.'/content/';
 		
 		//workaround for api get worked
 		if (isset($mResult['AuthToken']))
