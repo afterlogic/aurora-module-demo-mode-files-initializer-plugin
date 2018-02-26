@@ -60,23 +60,27 @@ class Module extends \Aurora\System\Module\AbstractModule
 		}
 		
 		$oUser = \Aurora\System\Api::getAuthenticatedUser();
-
-		$aFiles = scandir($sResourceDir);
-		foreach ($aFiles as $sFileName)
+		
+		if (!empty($oUser))
 		{
-			if ($sFileName !== '.' && $sFileName !== '..')
+			$aFiles = scandir($sResourceDir);
+			foreach ($aFiles as $sFileName)
 			{
-				$aUploadData = array(
-					'name' => $sFileName,
-					'tmp_name' => fopen($sResourceDir.$sFileName, 'r'),
-					'size' => '0.1'
-				);
-				
-				if (!$this->oFilesDecorator->UploadFile($oUser->EntityId, $sType, $sPath, $aUploadData)) 
+				if ($sFileName !== '.' && $sFileName !== '..')
 				{
-					$iErrors++;
+					$aUploadData = array(
+						'name' => $sFileName,
+						'tmp_name' => fopen($sResourceDir.$sFileName, 'r'),
+						'size' => '0.1'
+					);
+					
+					if (!$this->oFilesDecorator->UploadFile($oUser->EntityId, $sType, $sPath, $aUploadData)) 
+					{
+						$iErrors++;
+					}
 				}
 			}
+			
 		}
 		
 		return $iErrors > 0;
