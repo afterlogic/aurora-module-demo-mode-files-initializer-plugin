@@ -19,6 +19,8 @@ class Module extends \Aurora\System\Module\AbstractModule
 	
 	protected $oFilesDecorator = null;
 	
+	/***** private functions *****/
+	
 	public function init() 
 	{
 		$oDemoModePluginDecorator = \Aurora\Modules\DemoModePlugin\Module::Decorator();
@@ -46,7 +48,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 		}
 	}
 	
-	public function populateData()
+	protected function populateData()
 	{
 		$sType = 'personal';
 		$sPath = '/';
@@ -80,4 +82,6 @@ class Module extends \Aurora\System\Module\AbstractModule
 		
 		return $iErrors > 0;
 	}
+	
+	/***** private functions *****/
 }
