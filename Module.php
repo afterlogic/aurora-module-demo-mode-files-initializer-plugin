@@ -53,14 +53,8 @@ class Module extends \Aurora\System\Module\AbstractModule
 		$iErrors = 0;
 		$sResourceDir = __Dir__.'/content/';
 		
-		//workaround for api get worked
-		if (isset($mResult['AuthToken']))
-		{
-			\Aurora\System\Api::getAuthenticatedUserId($mResult['AuthToken']);
-		}
-		
 		$oUser = \Aurora\System\Api::getAuthenticatedUser();
-		
+
 		if (!empty($oUser))
 		{
 			$aFiles = scandir($sResourceDir);
@@ -74,13 +68,14 @@ class Module extends \Aurora\System\Module\AbstractModule
 						'size' => '0.1'
 					);
 					
-					if (!$this->oFilesDecorator->UploadFile($oUser->EntityId, $sType, $sPath, $aUploadData)) 
+					$oResult = $this->oFilesDecorator->UploadFile($oUser->EntityId, $sType, $sPath, $aUploadData);
+					
+					if (isset($oResult['Error'])) 
 					{
 						$iErrors++;
 					}
 				}
 			}
-			
 		}
 		
 		return $iErrors > 0;
