@@ -40,7 +40,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 	public function onAfterLogin(&$aArgs, &$mResult)
 	{
 		$oSettings = $this->oDemoModePluginDecorator->GetSettings();
-		$bDemoUser = isset($oSettings['IsDemoUser']) && !!$oSettings['IsDemoUser'];
+		$bDemoUser = isset($oSettings['IsDemoUser']) && !!$oSettings['IsDemoUser'] && isset($aArgs['NewDemoUser']) && $aArgs['NewDemoUser'];
 		
 		if ($bDemoUser)
 		{
