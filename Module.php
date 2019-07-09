@@ -15,6 +15,11 @@ namespace Aurora\Modules\DemoModeFilesInitializerPlugin;
  */
 class Module extends \Aurora\System\Module\AbstractModule
 {
+	protected $aRequireModules = [
+		'DemoModePlugin',
+		'Files'
+	];
+
 	protected $oDemoModePluginDecorator = null;
 	
 	protected $oFilesDecorator = null;
@@ -36,7 +41,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 		
 		$this->subscribeEvent('Core::Login::after', array($this, 'onAfterLogin'), 10);
 	}
-	
+
 	public function onAfterLogin(&$aArgs, &$mResult)
 	{
 		$oSettings = $this->oDemoModePluginDecorator->GetSettings();
