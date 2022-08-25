@@ -2,5 +2,9 @@
 	"Disabled": [
 		false,
 		"bool"
+	],
+	"Disabled_Description": [
+		"Setting to true disables the module",
+		"string"
 	]
 }
