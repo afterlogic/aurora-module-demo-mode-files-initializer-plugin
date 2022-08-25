@@ -57,6 +57,8 @@ class Module extends \Aurora\System\Module\AbstractModule
 	{
 		$sType = 'personal';
 		$sPath = '/';
+		$sSubPath = '';
+		$bOverwrite = false;
 		$iErrors = 0;
 		$sResourceDir = __Dir__.'/content/';
 		
@@ -75,7 +77,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 						'size' => '0.1'
 					);
 					
-					$oResult = $this->oFilesDecorator->UploadFile($oUser->EntityId, $sType, $sPath, $aUploadData);
+					$oResult = $this->oFilesDecorator->UploadFile($oUser->EntityId, $sType, $sPath, $aUploadData, $sSubPath, $bOverwrite);
 					
 					if (isset($oResult['Error'])) 
 					{
