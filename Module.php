@@ -62,7 +62,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 
         $oUser = \Aurora\System\Api::getAuthenticatedUser();
 
-        if (!$oUser) {
+        if ($oUser) {
             $aFiles = scandir($sResourceDir);
             foreach ($aFiles as $sFileName) {
                 if ($sFileName !== '.' && $sFileName !== '..') {
