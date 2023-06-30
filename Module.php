@@ -31,7 +31,7 @@ class Module extends \Aurora\System\Module\AbstractModule
         $oDemoModePluginDecorator = \Aurora\Modules\DemoModePlugin\Module::Decorator();
         $oFilesDecorator = \Aurora\Modules\Files\Module::Decorator();
 
-        if (empty($oDemoModePluginDecorator) || empty($oFilesDecorator)) {
+        if (!$oDemoModePluginDecorator || !$oFilesDecorator) {
             return;
         }
 
@@ -62,7 +62,7 @@ class Module extends \Aurora\System\Module\AbstractModule
 
         $oUser = \Aurora\System\Api::getAuthenticatedUser();
 
-        if (!empty($oUser)) {
+        if (!$oUser) {
             $aFiles = scandir($sResourceDir);
             foreach ($aFiles as $sFileName) {
                 if ($sFileName !== '.' && $sFileName !== '..') {
@@ -72,7 +72,7 @@ class Module extends \Aurora\System\Module\AbstractModule
                         'size' => '0.1'
                     );
 
-                    $oResult = $this->oFilesDecorator->UploadFile($oUser->EntityId, $sType, $sPath, $aUploadData, $sSubPath, $bOverwrite);
+                    $oResult = $this->oFilesDecorator->UploadFile($oUser->Id, $sType, $sPath, $aUploadData, $sSubPath, $bOverwrite);
 
                     if (isset($oResult['Error'])) {
                         $iErrors++;
