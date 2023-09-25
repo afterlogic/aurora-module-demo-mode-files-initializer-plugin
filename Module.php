@@ -58,7 +58,7 @@ class Module extends \Aurora\System\Module\AbstractModule
         $sSubPath = '';
         $bOverwrite = false;
         $iErrors = 0;
-        $sResourceDir = __Dir__.'/content/';
+        $sResourceDir = __Dir__ . '/content/';
 
         $oUser = \Aurora\System\Api::getAuthenticatedUser();
 
@@ -68,7 +68,7 @@ class Module extends \Aurora\System\Module\AbstractModule
                 if ($sFileName !== '.' && $sFileName !== '..') {
                     $aUploadData = array(
                         'name' => $sFileName,
-                        'tmp_name' => fopen($sResourceDir.$sFileName, 'r'),
+                        'tmp_name' => fopen($sResourceDir . $sFileName, 'r'),
                         'size' => '0.1'
                     );
 
